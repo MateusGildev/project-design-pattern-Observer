@@ -1,32 +1,11 @@
 package observers;
 
-import subjects.Email;
-
 import java.util.Objects;
 
-public class Parceiro implements Observer{
-
-    private String nome;
-    private String email;
+public class Parceiro extends Pessoa {
 
     public Parceiro(String nome, String email) {
-        this.nome = nome;
-        this.email = email;
-    }
-
-    @Override
-    public void update(String mensagem) {
-        Email.enviarEmail(this, mensagem);
-    }
-
-    @Override
-    public String getNome() {
-        return this.nome;
-    }
-
-    @Override
-    public String getEmail() {
-        return this.email;
+        super(nome, email);
     }
 
     @Override
@@ -34,11 +13,11 @@ public class Parceiro implements Observer{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Parceiro parceiro = (Parceiro) o;
-        return Objects.equals(nome, parceiro.nome) && Objects.equals(email, parceiro.email);
+        return Objects.equals(getNome(), parceiro.getNome()) && Objects.equals(getEmail(), parceiro.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, email);
+        return Objects.hash(getNome(), getEmail());
     }
 }

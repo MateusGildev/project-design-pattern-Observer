@@ -4,14 +4,11 @@ import subjects.Email;
 
 import java.util.Objects;
 
-public class Cliente implements Observer{
+public class Cliente extends Pessoa {
 
-    private String nome;
-    private String email;
 
     public Cliente(String nome, String email) {
-        this.nome = nome;
-        this.email = email;
+        super(nome,email);
     }
 
     @Override
@@ -20,25 +17,15 @@ public class Cliente implements Observer{
     }
 
     @Override
-    public String getNome() {
-        return this.nome;
-    }
-
-    @Override
-    public String getEmail() {
-        return this.email;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
-        return Objects.equals(nome, cliente.nome) && Objects.equals(email, cliente.email);
+        return Objects.equals(getNome(), cliente.getNome()) && Objects.equals(getEmail(), cliente.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, email);
+        return Objects.hash(getNome(), getEmail());
     }
 }
